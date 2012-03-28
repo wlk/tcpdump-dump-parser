@@ -1,3 +1,6 @@
+.fatjar
+bin/
+tcpdump-parser_fat.jar
 .classpath
 .project
 .settings

@@ -7,7 +7,7 @@ public class ServerDatabase {
 	static HashMap<String, Server> hm;
 	
 	public ServerDatabase(){
-		hm = new HashMap<String, Server>();
+		hm = new HashMap<String, Server>();//IP->Server
 	}
 	
 	public void add(String ip, int port){
@@ -18,6 +18,11 @@ public class ServerDatabase {
 				s.addApplication(new Application(ApplicationDatabase.getApplicationNameByPort(port), port));
 			}
 		}
+	}
+	
+	
+	public void print(){
+		//TODO
 	}
 
 }
