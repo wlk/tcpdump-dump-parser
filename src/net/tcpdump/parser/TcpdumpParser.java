@@ -12,13 +12,18 @@ public class TcpdumpParser {
 	Scanner s;
 	String MyIp;
 	ServerDatabase db;
+	ApplicationDatabase adb;
 	
 	public TcpdumpParser(File file) throws FileNotFoundException {
 		s = new Scanner(file);
 		MyIp = getMyIp();
 		System.out.println("my ip: " + MyIp);
 		db = new ServerDatabase();
+		adb = new ApplicationDatabase();
+		
 		parse();
+		
+		System.out.println(db.getAllServers());
 	}
 
 	public void setOutputFileName(String outputFileName) {
@@ -31,7 +36,7 @@ public class TcpdumpParser {
 			String line = s.nextLine();
 			if (line.startsWith("IP")) {
 				String IpLine = s.nextLine();
-				System.out.println("IP line: " + IpLine);
+				//System.out.println("IP line: " + IpLine);
 				
 				getRemoteIpAndPortFromLine(IpLine);
 
@@ -72,7 +77,7 @@ IP (tos 0x0, ttl 64, id 29503, offset 0, flags [DF], proto TCP (6), length 52)
 		for(int j = 0; j < shifts.length; ++j){
 			String IpAndPort = tokens[0+shifts[j]];
 			
-			System.out.println("IpAndPort: " + IpAndPort);
+			//System.out.println("IpAndPort: " + IpAndPort);
 			
 			String[] tokens2 = IpAndPort.split("\\.");
 			
@@ -92,7 +97,7 @@ IP (tos 0x0, ttl 64, id 29503, offset 0, flags [DF], proto TCP (6), length 52)
 				
 			db.add(ip, Integer.parseInt(tokens2[4]));
 			
-			System.out.println("host: " + ip + " port: " + tokens2[4]);
+			//System.out.println("host: " + ip + " port: " + tokens2[4]);
 			
 		}
 	}

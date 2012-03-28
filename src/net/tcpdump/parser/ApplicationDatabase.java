@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class ApplicationDatabase {
 	static HashMap<Integer, Application> hm; // Port -> Application Name
 	
-	public static void init(){
+	public ApplicationDatabase(){
 		hm = new HashMap<Integer, Application>();
 		hm.put(80, new Application("HTTP Server", 80));
 		hm.put(443, new Application("HTTPS Server", 443));
@@ -18,7 +18,12 @@ public class ApplicationDatabase {
 	}
 	
 	public static String getApplicationNameByPort(int port){
-		return hm.get(port).getName();
+		if(hm.containsKey(port)){
+			return hm.get(port).getName();
+		}
+		else{
+			return "unknown";
+		}
 	}
 
 }
