@@ -1,0 +1,99 @@
+21	FTP
+22	SSH
+23	Telnet
+37	Time
+42	WINS
+43	WHOIS
+53	DNS
+67	DHCP
+80	HTTP
+88	Kerberos
+110	POP3
+115	SFTP
+123	NTP
+143	IMAP4
+161	SNMP
+179	BGP
+389	LDAP
+443	HTTPS
+445	Active Directory
+513	rlogin
+514	syslog
+520	RIP
+530	RPC
+540	UUCP
+587	SMTP
+631	CUPS
+636	LDAP over SSL
+666	Doom
+694	Linux-HA
+843	Adobe Flash
+873	rsync
+993	IMAP over SSL
+1080	SOCKS
+1090	Real Audio
+1194	OpenVPN
+1214	Kazaa
+1234	VLC Media Player
+1503	Windows Live Messenger
+1521	Oracle Server (Database)
+1550	Gadu-Gadu
+1666	Perforce
+1723	PPTP
+1900	UPnP
+2483	Oracle Server (Database)
+2638	Sybase (Database)
+2947	gpsd
+3074	Xbox LIVE
+3101	BlackBerry Enterprise Server
+3128	Squid
+3283	Apple Remote Desktop
+3306	MySQL Server
+3690	SVN
+3723	Battle.net
+3724	World of Warcraft
+3784	Ventrilo
+3785	Ventrilo
+3978	OpenTDD
+3979	OpenTDD
+4000	Diablo 2
+4201	TinyMUD
+4502	Microsoft Silverlight
+4672	eMule
+4949	Munin
+5050	Yahoo Messenger
+5121	Neverwinter Nights
+5190	ICQ
+5222	XMPP
+5228	Android Market
+5281	XMPP
+5432	PostreSQL
+5666	Nagios
+5667	Nagios
+5984	CouchDB
+6000	X11
+6001	X11
+6050	Nortel
+6112	Battle.net
+6600	MPD
+6665	IRC
+6666	IRC
+6881	BitTorrent
+6888	BitTorrent
+6999	BitTorrent
+7171	Tibia
+8074	Gadu-Gadu
+8080	Apache Tomcat / HTTP
+8333	BitCoin
+9030	Tor
+9050	Tor
+9051	Tor
+9418	git
+11211	memcached
+12345	NetBus
+17500	Dropbox
+19294	Google Talk
+23399	Skype
+24800	Synergy
+30301	BitTorrent
+33434	traceroute

@@ -75,11 +75,17 @@ IP (tos 0x0, ttl 64, id 29503, offset 0, flags [DF], proto TCP (6), length 52)
 		String[] toReturn = { "", "" };
 		
 		for(int j = 0; j < shifts.length; ++j){
+			if(tokens.length <= shifts[j]){
+				continue;
+			}
 			String IpAndPort = tokens[0+shifts[j]];
 			
 			//System.out.println("IpAndPort: " + IpAndPort);
 			
 			String[] tokens2 = IpAndPort.split("\\.");
+			if(tokens2.length < 5 || tokens2[4].equals("")){//no port given
+				continue;
+			}
 			
 			StringBuffer sb = new StringBuffer();
 			sb.append(tokens2[0] + ".");
@@ -90,12 +96,15 @@ IP (tos 0x0, ttl 64, id 29503, offset 0, flags [DF], proto TCP (6), length 52)
 			String ip = sb.toString();
 
 			toReturn[0] = ip;
-			if(tokens2.length < 5){//no port given
-				continue;
-			}
+
 			toReturn[1] = tokens2[4];
-				
-			db.add(ip, Integer.parseInt(tokens2[4]));
+			
+			try{
+				db.add(ip, Integer.parseInt(tokens2[4]));
+			}
+			catch(NumberFormatException e){
+				//do nothing
+			}
 			
 			//System.out.println("host: " + ip + " port: " + tokens2[4]);
 			
