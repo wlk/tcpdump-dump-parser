@@ -1,23 +1,17 @@
 package net.tcpdump.parser;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class Server {
-	//private String ip;
-	//ArrayList<Application> applications;//unused
 	HashMap<Integer, Application> hm;//Port -> Application
+	int maxTTL;
 
 	public Server(){
 		hm = new HashMap<Integer, Application>();
-		//applications = new ArrayList<Application>();
-	}
-
-	public Application getApplicationByPort(int port){
-		return hm.get(port);
+		maxTTL = 0;
 	}
 
 	public void addApplication(Application a){
@@ -41,6 +35,16 @@ public class Server {
 		}
 		sb.append("]");
 		return sb.toString();
+	}
+	
+	public void setMaxTTL(int ttl){
+		if(ttl > maxTTL){
+			maxTTL = ttl;
+		}
+	}
+	
+	public int getMaxTTL(){
+		return maxTTL;
 	}
 	
 

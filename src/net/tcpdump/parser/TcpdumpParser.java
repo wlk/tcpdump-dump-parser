@@ -2,11 +2,9 @@ package net.tcpdump.parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class TcpdumpParser {
+public class TcpdumpParser implements ParserInterface{
 
 	File outputFile;
 	Scanner s;
@@ -14,24 +12,14 @@ public class TcpdumpParser {
 	ServerDatabase db;
 	ApplicationDatabase adb;
 	
-	public TcpdumpParser(File file) throws FileNotFoundException {
+	public TcpdumpParser(File file, ApplicationDatabase adb, ServerDatabase db) throws FileNotFoundException {
+		this.adb = adb;
+		this.db = db;
 		s = new Scanner(file);
-		MyIp = getMyIp();
-		System.out.println("my ip: " + MyIp);
-		db = new ServerDatabase();
-		adb = new ApplicationDatabase();
-		
-		parse();
-		
-		System.out.println(db.getAllServers());
-	}
-
-	public void setOutputFileName(String outputFileName) {
-
+		parse();		
 	}
 
 	public void parse() {
-		
 		while (s.hasNext()) {
 			String line = s.nextLine();
 			if (line.startsWith("IP")) {
@@ -41,20 +29,8 @@ public class TcpdumpParser {
 				getRemoteIpAndPortFromLine(IpLine);
 
 			}
-			
 		}
 
-	}
-
-	private String getMyIp() {
-		String myIP = "";
-		try {
-			InetAddress addr = InetAddress.getLocalHost();
-			myIP = addr.getHostAddress();
-		} catch (UnknownHostException e) {
-			System.out.println("unable to determine my ip " + e);
-		}
-		return myIP;
 	}
 
 	/*
@@ -66,6 +42,8 @@ IP (tos 0x0, ttl 64, id 29503, offset 0, flags [DF], proto TCP (6), length 52)
     second line: source_host.source_port > remote_host.remote_port
 	 */
 	
+	//TODO add parsing TTL (+ get which IP is SOURCE, first probably)
+	//TODO add parsing protocol (TCP or UDP)
 	private void getRemoteIpAndPortFromLine(String line) {
 		
 		line = line.trim();

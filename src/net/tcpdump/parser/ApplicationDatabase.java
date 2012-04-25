@@ -51,7 +51,7 @@ public class ApplicationDatabase {
 	private void generateMappersFromProperties(String properties) {
 		String[] propertiesLines = properties.split("\n"); //each line contains next service
 		for (int i =0; i < propertiesLines.length; ++i) {
-			System.out.println("read line: " + propertiesLines[i]);
+			//System.out.println("read line: " + propertiesLines[i]);
 			String[] propertiesArray = propertiesLines[i].split("\t");
 			
 			String port = propertiesArray[0];

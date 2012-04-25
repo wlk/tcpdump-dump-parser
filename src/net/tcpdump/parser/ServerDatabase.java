@@ -17,18 +17,27 @@ public class ServerDatabase {
 		
 		if(! hm.containsKey(ip)){//no server found
 			hm.put(ip, new Server());
+			System.out.println("new server: " + ip);
 		}
 		Server s = hm.get(ip);
 		
-		Application a = s.getApplicationByPort(port);
+		Application a = ApplicationDatabase.getApplicationByPort(port);
 		if(a != null){
-			System.out.println("app is not null");
+			System.out.println("app is not null " + port);
 			s.addApplication(new Application(ApplicationDatabase.getApplicationNameByPort(port), port));
+			System.out.println("app: " + ApplicationDatabase.getApplicationNameByPort(port));
 		}
 		else{
-			System.out.println("app is null");
-			s.addApplication(new Application("unknown", port));
+			System.out.println("app is null " + port);
+			s.addApplication(new Application("unknown " + port, port));
 		}
+	}
+	
+	public void setTTL(String ip, int ttl){
+		Server s = hm.get(ip);
+		s.setMaxTTL(ttl);
+		System.out.println("for server: " + ip + " ttl was set to: " + ttl);
+		System.out.println("max ttl for server: " + ip + " " + s.getMaxTTL());
 	}
 	
 	
@@ -45,7 +54,7 @@ public class ServerDatabase {
             host = pairs.getKey();
             s = pairs.getValue();
             
-            sb.append("server: " + host + "\t" + s.getApplications() + "\n");
+            sb.append("server: " + host + "\t" + "ttl: " + s.getMaxTTL() +  "\t" + s.getApplications() + "\n");
 		}
 		return sb.toString();
 	}
