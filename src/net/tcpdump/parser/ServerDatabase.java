@@ -40,6 +40,13 @@ public class ServerDatabase {
 		System.out.println("max ttl for server: " + ip + " " + s.getMaxTTL());
 	}
 	
+	public String getOSForTTL(int ttl){
+		if(ttl > 64){
+			return "Windows";
+		}
+		return "Linux";
+	}
+	
 	
 	public String getAllServers(){
 		Iterator<Entry<String, Server>> it = hm.entrySet().iterator();
@@ -54,7 +61,7 @@ public class ServerDatabase {
             host = pairs.getKey();
             s = pairs.getValue();
             
-            sb.append("server: " + host + "\t" + "ttl: " + s.getMaxTTL() +  "\t" + s.getApplications() + "\n");
+            sb.append("server: " + host + "\t" + "os: " + getOSForTTL(s.getMaxTTL()) +  "\t" + s.getApplications() + "\n");
 		}
 		return sb.toString();
 	}
