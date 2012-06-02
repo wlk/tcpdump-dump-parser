@@ -31,7 +31,7 @@ public class TSVParser implements ParserInterface {
 				continue;
 			} else {// complete line
 				try {
-					System.out.println(lineArr[0] + " " + lineArr[1] + " " + lineArr[2] + " " + lineArr[3] + " " + lineArr[4] + " " + lineArr[5]);
+					//System.out.println(lineArr[0] + " " + lineArr[1] + " " + lineArr[2] + " " + lineArr[3] + " " + lineArr[4] + " " + lineArr[5]);
 					db.add(lineArr[0], Integer.parseInt(lineArr[3]));
 					db.add(lineArr[1], Integer.parseInt(lineArr[4]));
 					

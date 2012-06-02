@@ -16,19 +16,21 @@ public class ServerDatabase {
 	public void add(String ip, int port){
 		
 		if(! hm.containsKey(ip)){//no server found
-			hm.put(ip, new Server());
-			System.out.println("new server: " + ip);
+			Server s = new Server();
+			s.setIp(ip);
+			hm.put(ip, s);
+			//System.out.println("new server: " + ip);
 		}
 		Server s = hm.get(ip);
 		
 		Application a = ApplicationDatabase.getApplicationByPort(port);
 		if(a != null){
-			System.out.println("app is not null " + port);
+			//System.out.println("app is not null " + port);
 			s.addApplication(new Application(ApplicationDatabase.getApplicationNameByPort(port), port));
-			System.out.println("app: " + ApplicationDatabase.getApplicationNameByPort(port));
+			//System.out.println("app: " + ApplicationDatabase.getApplicationNameByPort(port));
 		}
 		else{
-			System.out.println("app is null " + port);
+			//System.out.println("app is null " + port);
 			s.addApplication(new Application("unknown " + port, port));
 		}
 	}
@@ -36,8 +38,8 @@ public class ServerDatabase {
 	public void setTTL(String ip, int ttl){
 		Server s = hm.get(ip);
 		s.setMaxTTL(ttl);
-		System.out.println("for server: " + ip + " ttl was set to: " + ttl);
-		System.out.println("max ttl for server: " + ip + " " + s.getMaxTTL());
+		//System.out.println("for server: " + ip + " ttl was set to: " + ttl);
+		//System.out.println("max ttl for server: " + ip + " " + s.getMaxTTL());
 	}
 	
 	public String getOSForTTL(int ttl){
@@ -61,7 +63,7 @@ public class ServerDatabase {
             host = pairs.getKey();
             s = pairs.getValue();
             
-            sb.append("server: " + host + "\t" + "os: " + getOSForTTL(s.getMaxTTL()) +  "\t" + s.getApplications() + "\n");
+            sb.append("server: " + host + "\t" + "os: " + getOSForTTL(s.getMaxTTL()) +  "\t" + s.getApplications() + "\tos (nmap):" + s.getOS() + "\n");
 		}
 		return sb.toString();
 	}

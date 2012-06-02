@@ -1,2 +1,4 @@
-right now it only uses port information
-parser requires ascii format, see resources/run.sh for details on how to prepare it
+to guess os we use TTL information and nmap script
+ 
+parser can use both TSV format nad tcpdump ascii format
+
